@@ -3,6 +3,7 @@ package au.edu.jcu.cp3406.lawncare;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.ImageView;
 
 public class Help extends AppCompatActivity {
 
