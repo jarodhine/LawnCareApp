@@ -2,12 +2,13 @@ package au.edu.jcu.cp3406.lawncare;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class Home extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity {
 
     Button scheduleDelivery;
     Button help;
@@ -19,6 +20,8 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        final int userID = getIntent().getIntExtra("userID", 0);
+
         scheduleDelivery = findViewById(R.id.btnScheduleDelivery);
         help = findViewById(R.id.btnHelp);
         deliveryDate = findViewById(R.id.tvDeliveryDate);
@@ -27,14 +30,17 @@ public class Home extends AppCompatActivity {
         scheduleDelivery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(HomeActivity.this, DeliveryActivity.class);
+                intent.putExtra("userID", userID);
+                startActivity(intent);
             }
         });
 
         help.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(HomeActivity.this, HelpActivity.class);
+                startActivity(intent);
             }
         });
     }

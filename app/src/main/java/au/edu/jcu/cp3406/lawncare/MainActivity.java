@@ -2,31 +2,78 @@ package au.edu.jcu.cp3406.lawncare;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText userID;
+    EditText userName;
     EditText userPassword;
     Button login;
+
+    DatabaseHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        userID = findViewById(R.id.editID);
+        db = new DatabaseHelper(this);
+
+        //Setup test users
+        db.addUser("Admin", "password", "Admin", "Blank");
+        db.addUser("abc", "password", "John", "123 Fake St");
+        db.addUser("bca", "password", "Jane", "123 Real St");
+
+        userName = findViewById(R.id.editID);
         userPassword = findViewById(R.id.editPassword);
         login = findViewById(R.id.btnLogin);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                validate();
             }
         });
+    }
+
+    private void validate() {
+        String name = userName.getText().toString();
+        String password = userPassword.getText().toString();
+
+        //Return if empty
+        if (name.isEmpty() || password.isEmpty()) {
+            Toast.makeText(this, "Please enter your details", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        //Check user exist
+        if (!db.checkUserExist(name)) {
+            Toast.makeText(this, "User does not exist", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        //Authenticate User
+        if (!db.checkUserPassword(name, password)) {
+            Toast.makeText(this, "Password is incorrect", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        startActivity();
+    }
+
+    private void startActivity() {
+        Intent intent;
+        if (userName.getText().toString().equals("Admin")) {
+            intent = new Intent(MainActivity.this, AdminActivity.class);
+        } else {
+            intent = new Intent(MainActivity.this, HomeActivity.class);
+        }
+        intent.putExtra("userID", 0);
+        startActivity(intent);
     }
 }
