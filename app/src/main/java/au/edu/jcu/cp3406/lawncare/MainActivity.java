@@ -47,19 +47,19 @@ public class MainActivity extends AppCompatActivity {
 
         //Return if empty
         if (name.isEmpty() || password.isEmpty()) {
-            Toast.makeText(this, "Please enter your details", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.empty_details), Toast.LENGTH_SHORT).show();
             return;
         }
 
         //Check user exist
         if (!db.checkUserExist(name)) {
-            Toast.makeText(this, "User does not exist", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.wrong_user), Toast.LENGTH_SHORT).show();
             return;
         }
 
         //Authenticate User
         if (!db.checkUserPassword(name, password)) {
-            Toast.makeText(this, "Password is incorrect", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.wrong_password), Toast.LENGTH_SHORT).show();
             return;
         }
 

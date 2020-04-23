@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">LawnCare</string>
+
+    <!--Toast messages-->
+    <string name="empty_details">Please enter your details</string>
+    <string name="wrong_user">User does not exist</string>
+    <string name="wrong_password">Password is incorrect</string>
 </resources>
