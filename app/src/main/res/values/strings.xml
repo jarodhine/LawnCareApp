@@ -5,4 +5,30 @@
     <string name="empty_details">Please enter your details</string>
     <string name="wrong_user">User does not exist</string>
     <string name="wrong_password">Password is incorrect</string>
+    <string name="day_invalid_delivery">Deliveries are full please try another day</string>
+    <string name="day_invalid_pickup">Pickups are full please try another day</string>
+    <string name="time_invalid_delivery">Delivery times full please try another time</string>
+    <string name="time_invalid_pickup">Pickup times full please try another time</string>
+    <string name="date_avaialble">Date is available for booking</string>
+
+    <!--Arrays -->
+    <string-array name="days">
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+    </string-array>
+    <string-array name="delivery_hours">
+        <item>10 AM</item>
+        <item>12 PM</item>
+        <item>2 PM</item>
+        <item>4 PM</item>
+    </string-array>
+    <string-array name="pickup_hours">
+        <item>11 AM</item>
+        <item>1 PM</item>
+        <item>3 PM</item>
+        <item>5 PM</item>
+    </string-array>
 </resources>

@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
             intent = new Intent(MainActivity.this, HomeActivity.class);
         }
-        intent.putExtra("userID", 0);
+        intent.putExtra("userID", db.getID(userName.getText().toString()));
         startActivity(intent);
     }
 }
