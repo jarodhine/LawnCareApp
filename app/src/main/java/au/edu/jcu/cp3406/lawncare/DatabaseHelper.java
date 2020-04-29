@@ -9,12 +9,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "LawnCare.db";
-    private static final String TABLE_NAME = "Users";
-    private static final String Col1 = "ID";
-    private static final String Col2 = "Username";
-    private static final String Col3 = "Password";
-    private static final String Col4 = "Name";
-    private static final String Col5 = "Address";
 
     DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -27,11 +21,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     + "Password TEXT,"
                     + "Name TEXT,"
                     + "Address TEXT);");
+
+        db.execSQL("CREATE TABLE Deliveries (ID INTEGER, "
+                + "Day TEXT,"
+                + "Time TEXT,"
+                + "Type TEXT,"
+                + "FOREIGN KEY (ID) REFERENCES Users(ID));");
+
+        //Setup test users
+        addUser("Admin", "password", "Admin", "Blank");
+        addUser("abc", "password", "John", "123 Fake St");
+        addUser("bca", "password", "Jane", "123 Real St");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + "Users");
+        db.execSQL("DROP TABLE IF EXISTS " + "Deliveries");
         onCreate(db);
     }
 
@@ -42,16 +48,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put("Password", password);
         contentValues.put("Name", name);
         contentValues.put("Address", address);
-        db.insert(TABLE_NAME, null, contentValues);
+        db.insert("Users", null, contentValues);
         db.close();
     }
 
     public boolean checkUserExist(String username) {
-        String[] columns = {Col1};
+        String[] columns = {"ID"};
         SQLiteDatabase db = getReadableDatabase();
-        String selection = Col2 + "=?";
+        String selection = "Username" + "=?";
         String[] selectionArgs = {username};
-        Cursor cursor = db.query(TABLE_NAME, columns, selection, selectionArgs, null, null, null);
+        Cursor cursor = db.query("Users", columns, selection, selectionArgs, null, null, null);
         int counter = cursor.getCount();
         cursor.close();
         db.close();
@@ -60,11 +66,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public boolean checkUserPassword(String username, String password) {
-        String[] columns = {Col1};
+        String[] columns = {"ID"};
         SQLiteDatabase db = getReadableDatabase();
-        String selection = Col2 + "=?" + " and " + Col3 + "=?";
+        String selection = "Username" + "=?" + " and " + "Password" + "=?";
         String[] selectionArgs = {username, password};
-        Cursor cursor = db.query(TABLE_NAME, columns, selection, selectionArgs, null, null, null);
+        Cursor cursor = db.query("Users", columns, selection, selectionArgs, null, null, null);
         int counter = cursor.getCount();
         cursor.close();
         db.close();
@@ -74,7 +80,55 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public int getID(String username) {
         SQLiteDatabase db = getReadableDatabase();
-        //Cursor cursor = db.query("SELECT " + Col1 + "FROM " + TABLE_NAME + " WHERE " + Col2 + " ='username'");
-        return 0;
+        Cursor cursor = db.rawQuery("SELECT ID FROM Users WHERE Username='" + username + "'", null);
+        int ID = 0;
+        if (cursor.moveToFirst()) {
+            ID = cursor.getInt(0);
+        }
+        cursor.close();
+        return ID;
+    }
+
+    public void addDelivery(int ID, String devTime, String devDay, String picTime, String picDay) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues devValues = new ContentValues();
+        ContentValues picValues = new ContentValues();
+
+        devValues.put("ID", ID);
+        devValues.put("Day", devDay);
+        devValues.put("Time", devTime);
+        devValues.put("Type", "Delivery");
+        db.insert("Deliveries", null, devValues);
+
+        picValues.put("ID", ID);
+        picValues.put("Day", picDay);
+        picValues.put("Time", picTime);
+        picValues.put("Type", "Pickup");
+        db.insert("Deliveries", null, picValues);
+
+        db.close();
+    }
+
+    public boolean checkDay(String day) {
+        //TODO check day has at least one available time slot
+        return true;
+    }
+
+    public boolean checkTime(String day, String time) {
+        //TODO check time slot is available
+        return true;
+    }
+
+    public boolean checkExisting(int id) {
+        //TODO check no prior deliveries exist
+        return true;
+    }
+
+    public String getDelivery(int id) {
+        return "-";
+    }
+
+    public String getPickup(int id) {
+        return "-";
     }
 }
