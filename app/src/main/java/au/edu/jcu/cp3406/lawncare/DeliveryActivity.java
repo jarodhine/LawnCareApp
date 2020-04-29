@@ -140,37 +140,37 @@ public class DeliveryActivity extends AppCompatActivity {
         LocalTime lt2 = LocalTime.now();
 
         switch (devDaySelection) {
-            case "Monday":
+            case "Next Monday":
                 ld1 = ld1.with(TemporalAdjusters.next(DayOfWeek.MONDAY));
                 break;
-            case "Tuesday":
+            case "Next Tuesday":
                 ld1 = ld1.with(TemporalAdjusters.next(DayOfWeek.TUESDAY));
                 break;
-            case "Wednesday":
+            case "Next Wednesday":
                 ld1 = ld1.with(TemporalAdjusters.next(DayOfWeek.WEDNESDAY));
                 break;
-            case "Thursday":
+            case "Next Thursday":
                 ld1 = ld1.with(TemporalAdjusters.next(DayOfWeek.THURSDAY));
                 break;
-            case "Friday":
+            case "Next Friday":
                 ld1 = ld1.with(TemporalAdjusters.next(DayOfWeek.FRIDAY));
                 break;
         }
 
         switch (picDaySelection) {
-            case "Monday":
+            case "Next Monday":
                 ld2 = ld2.with(TemporalAdjusters.next(DayOfWeek.MONDAY));
                 break;
-            case "Tuesday":
+            case "Next Tuesday":
                 ld2 = ld2.with(TemporalAdjusters.next(DayOfWeek.TUESDAY));
                 break;
-            case "Wednesday":
+            case "Next Wednesday":
                 ld2 = ld2.with(TemporalAdjusters.next(DayOfWeek.WEDNESDAY));
                 break;
-            case "Thursday":
+            case "Next Thursday":
                 ld2 = ld2.with(TemporalAdjusters.next(DayOfWeek.THURSDAY));
                 break;
-            case "Friday":
+            case "Next Friday":
                 ld2 = ld2.with(TemporalAdjusters.next(DayOfWeek.FRIDAY));
                 break;
         }

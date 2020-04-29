@@ -24,7 +24,7 @@ public class HomeActivity extends AppCompatActivity {
 
     DatabaseHelper db;
 
-    int userID;
+    int homeID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +34,7 @@ public class HomeActivity extends AppCompatActivity {
         db = new DatabaseHelper(this);
 
         final int userID = getIntent().getIntExtra("userID", 0);
+        homeID = userID;
 
         scheduleDelivery = findViewById(R.id.btnScheduleDelivery);
         help = findViewById(R.id.btnHelp);
@@ -61,8 +62,9 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        //TODO update next delivery and pickup
-        deliveryDate.setText(String.format("%s%s", getString(R.string.next_delivery), db.getDelivery(userID)));
-        pickupDate.setText(String.format("%s%s", getString(R.string.next_pickup), db.getDelivery(userID)));
+        Log.i("myTag", "User ID: " + String.valueOf(homeID));
+
+        deliveryDate.setText(String.format("%s%s", getString(R.string.next_delivery), db.getDelivery(homeID)));
+        pickupDate.setText(String.format("%s%s", getString(R.string.next_pickup), db.getPickup(homeID)));
     }
 }

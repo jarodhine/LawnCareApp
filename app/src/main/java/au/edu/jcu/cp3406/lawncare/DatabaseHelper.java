@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
@@ -28,10 +29,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + "Type TEXT,"
                 + "FOREIGN KEY (ID) REFERENCES Users(ID));");
 
-        //Setup test users
-        addUser("Admin", "password", "Admin", "Blank");
-        addUser("abc", "password", "John", "123 Fake St");
-        addUser("bca", "password", "Jane", "123 Real St");
     }
 
     @Override
@@ -125,10 +122,47 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public String getDelivery(int id) {
-        return "-";
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT Day, Time FROM Deliveries WHERE ID='" + id + "' AND Type = 'Delivery'", null);
+        Log.i("myTag", "Row Count: " + String.valueOf(cursor.getCount()));
+
+        String day = "";
+        String time = "";
+
+        if (cursor.getCount() <= 0) {
+            cursor.close();
+            return "No Delivery Scheduled";
+
+        }
+
+        cursor.moveToFirst();
+        day = cursor.getString(0);
+        time = cursor.getString(1);
+        cursor.close();
+
+        String s = day + " " + time;
+        return s;
     }
 
     public String getPickup(int id) {
-        return "-";
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT Day, Time FROM Deliveries WHERE ID='" + id + "' AND Type = 'Pickup'", null);
+
+        String day = "";
+        String time = "";
+
+        if (cursor.getCount() <= 0) {
+            cursor.close();
+            return "No Pickup Scheduled";
+
+        }
+
+        cursor.moveToFirst();
+        day = cursor.getString(0);
+        time = cursor.getString(1);
+        cursor.close();
+
+        String s = day + " " + time;
+        return s;
     }
 }

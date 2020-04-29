@@ -18,8 +18,8 @@
     <!--Home-->
     <string name="schedule_delivery">Schedule Delivery</string>
     <string name="help">Help</string>
-    <string name="next_delivery">Next Delivery: </string>
-    <string name="next_pickup">Next Pickup: </string>
+    <string name="next_delivery">Next Delivery:&#160;</string>
+    <string name="next_pickup">Next Pickup:&#160;</string>
 
     <!--Delivery-->
     <string name="delivery_date">Delivery Date</string>
@@ -32,11 +32,11 @@
 
     <!--Arrays -->
     <string-array name="days">
-        <item>Monday</item>
-        <item>Tuesday</item>
-        <item>Wednesday</item>
-        <item>Thursday</item>
-        <item>Friday</item>
+        <item>Next Monday</item>
+        <item>Next Tuesday</item>
+        <item>Next Wednesday</item>
+        <item>Next Thursday</item>
+        <item>Next Friday</item>
     </string-array>
     <string-array name="hours">
         <item>10 AM</item>
