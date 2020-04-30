@@ -25,8 +25,8 @@ public class MainActivity extends AppCompatActivity {
         db = new DatabaseHelper(this);
 
         db.addUser("Admin", "password", "Admin", "Blank");
-        db.addUser("abc", "password", "John", "123 Fake St");
-        db.addUser("bca", "password", "Jane", "123 Real St");
+        db.addUser("John1234", "password", "John", "123 Fake St");
+        db.addUser("Jane1234", "password", "Jane", "123 Real St");
 
         userName = findViewById(R.id.editID);
         userPassword = findViewById(R.id.editPassword);
