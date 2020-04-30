@@ -1,4 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Rasenpflege</string>
+    <string name="empty_details">Bitte geben Sie Ihre Daten ein</string>
+    <string name="wrong_user">Benutzer existiert nicht</string>
+    <string name="wrong_password">Das Passwort ist inkorrekt</string>
+    <string name="day_invalid">Tag ist ausgebucht, bitte versuchen Sie es an einem anderen Tag</string>
+    <string name="time_invalid">Die Zeit ist gebucht, bitte versuchen Sie es zu einem anderen Zeitpunkt</string>
+    <string name="date_invalid">Die Abholung muss nach Lieferung erfolgen</string>
+    <string name="date_available">Termine können gebucht werden</string>
+    <string name="username">Geben Sie den Benutzernamen ein</string>
+    <string name="password">Passwort eingeben</string>
+    <string name="login">Anmeldung</string>
+    <string name="schedule_delivery">Lieferung planen</string>
+    <string name="help">Hilfe</string>
+    <string name="next_delivery">Neue Lieferung</string>
+    <string name="next_pickup">Nächste Abholung</string>
+    <string name="delivery_date">Lieferdatum</string>
+    <string name="pickup_date">Abholdatum</string>
+    <string name="check_availability">Verfügbarkeit prüfen</string>
+    <string name="request_delivery">Lieferung anfordern</string>
 </resources>

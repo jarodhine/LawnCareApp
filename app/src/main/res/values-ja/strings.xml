@@ -1,4 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">ローンケア</string>
+    <string name="empty_details">詳細を入力してください</string>
+    <string name="wrong_user">ユーザーは存在しません</string>
+    <string name="wrong_password">パスワードが正しくありません</string>
+    <string name="day_invalid">日は満席です別の日をお試しください</string>
+    <string name="time_invalid">時間は予約されています。もう一度お試しください</string>
+    <string name="date_invalid">受け取りは配達後でなければなりません</string>
+    <string name="date_available">日付は予約可能です</string>
+    <string name="username">ユーザーネームを入力してください</string>
+    <string name="password">パスワードを入力する</string>
+    <string name="login">ログインする</string>
+    <string name="schedule_delivery">配送のスケジュール</string>
+    <string name="help">助けて</string>
+    <string name="next_delivery">新しい配達</string>
+    <string name="next_pickup">次のピックアップ</string>
+    <string name="delivery_date">配送日</string>
+    <string name="pickup_date">受取日</string>
+    <string name="check_availability">空き状況を確認する</string>
+    <string name="request_delivery">配達依頼</string>
 </resources>
