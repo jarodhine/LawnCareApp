@@ -1,4 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Cura del prato</string>
+    <string name="empty_details">Per favore inserisci i tuoi dati</string>
+    <string name="wrong_user">l\'utente non esiste</string>
+    <string name="wrong_password">La password non è corretta</string>
+    <string name="day_invalid">Il giorno è al completo, prova un altro giorno</string>
+    <string name="time_invalid">L\'ora è prenotata, prova un\'altra volta</string>
+    <string name="date_invalid">Il ritiro deve avvenire dopo la consegna</string>
+    <string name="date_available">Le date sono disponibili per la prenotazione</string>
+    <string name="username">Inserire username</string>
+    <string name="password">Inserire la password</string>
+    <string name="login">Accesso</string>
+    <string name="schedule_delivery">Pianifica la consegna</string>
+    <string name="help">Aiuto</string>
+    <string name="next_delivery">Nuova consegna</string>
+    <string name="next_pickup">Prossimo ritiro</string>
+    <string name="delivery_date">Data di consegna</string>
+    <string name="pickup_date">Data di ritiro</string>
+    <string name="check_availability">Verificare la disponibilità</string>
+    <string name="request_delivery">Richiedi consegna</string>
 </resources>
