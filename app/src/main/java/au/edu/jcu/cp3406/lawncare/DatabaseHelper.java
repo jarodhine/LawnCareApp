@@ -106,25 +106,45 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    public boolean checkDay(String day) {
-        //TODO check day has at least one available time slot
+    public boolean checkDay(String day, String type) {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT Day FROM Deliveries WHERE Day ='" + day + "' AND Type = '" + type + "'", null);
+
+        if (cursor.getCount() >= 8) {
+            return false;
+        }
+        cursor.close();
+
         return true;
     }
 
-    public boolean checkTime(String day, String time) {
-        //TODO check time slot is available
+    public boolean checkTime(String day, String time, String type) {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT Day FROM Deliveries WHERE Day ='" + day + "' AND Time = '" + time + "' AND Type = '" + type + "'", null);
+
+        if (cursor.getCount() >= 1) {
+            return false;
+        }
+        cursor.close();
+
         return true;
     }
 
     public boolean checkExisting(int id) {
-        //TODO check no prior deliveries exist
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT Day FROM Deliveries WHERE ID ='" + id + "'", null);
+
+        if (cursor.getCount() >= 1) {
+            return false;
+        }
+        cursor.close();
+
         return true;
     }
 
     public String getDelivery(int id) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT Day, Time FROM Deliveries WHERE ID='" + id + "' AND Type = 'Delivery'", null);
-        Log.i("myTag", "Row Count: " + String.valueOf(cursor.getCount()));
 
         String day = "";
         String time = "";

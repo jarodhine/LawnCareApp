@@ -65,10 +65,11 @@ public class DeliveryActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (verifyDate(false)) {
-                    //TODO Submit to database and check no prior deliveries exist
                     if (db.checkExisting(userID)) {
                         db.addDelivery(userID, devTimeSelection.toString(), devDaySelection.toString(), picTimeSelection.toString(), picDaySelection.toString());
                         finish();
+                    } else {
+                        Toast.makeText(getApplicationContext(), getString(R.string.prior_delivery), Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -80,13 +81,25 @@ public class DeliveryActivity extends AppCompatActivity {
 
         //Compare database
         //Return false if dates are unavailable
-        if (!verifyDay()) {
-            Toast.makeText(getApplicationContext(), getString(R.string.day_invalid), Toast.LENGTH_SHORT).show();
+        //Delivery Verification
+        if (!db.checkDay(devDaySelection, "Delivery")) {
+            Toast.makeText(getApplicationContext(), getString(R.string.dev_day_invalid), Toast.LENGTH_SHORT).show();
             return false;
         }
 
-        if (!verifyTime()) {
-            Toast.makeText(getApplicationContext(), getString(R.string.time_invalid), Toast.LENGTH_SHORT).show();
+        if (!db.checkTime(devDaySelection,  devTimeSelection,"Delivery")) {
+            Toast.makeText(getApplicationContext(), getString(R.string.dev_time_invalid), Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        //Pickup Verification
+        if (!db.checkDay(devDaySelection, "Pickup")) {
+            Toast.makeText(getApplicationContext(), getString(R.string.pic_day_invalid), Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (!db.checkTime(devDaySelection, picTimeSelection, "Delivery")) {
+            Toast.makeText(getApplicationContext(), getString(R.string.pic_time_invalid), Toast.LENGTH_SHORT).show();
             return false;
         }
 
@@ -114,16 +127,6 @@ public class DeliveryActivity extends AppCompatActivity {
         if (verbose) {
             Toast.makeText(getApplicationContext(), getString(R.string.date_available), Toast.LENGTH_SHORT).show();
         }
-        return true;
-    }
-
-    public boolean verifyDay() {
-        //TODO check database
-        return true;
-    }
-
-    public boolean verifyTime() {
-        //TODO check database
         return true;
     }
 

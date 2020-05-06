@@ -5,10 +5,13 @@
     <string name="empty_details">Please enter your details</string>
     <string name="wrong_user">User does not exist</string>
     <string name="wrong_password">Password is incorrect</string>
-    <string name="day_invalid">Day is fully booked please try another day</string>
-    <string name="time_invalid">Time is booked please try another time</string>
+    <string name="dev_day_invalid">Delivery day is fully booked please try another day</string>
+    <string name="pic_day_invalid">Pickup day is fully booked please try another day</string>
+    <string name="dev_time_invalid">Delivery time is booked please try another time</string>
+    <string name="pic_time_invalid">Pickup time is booked please try another time</string>
     <string name="date_invalid">Pickup must be after delivery</string>
     <string name="date_available">Dates are available for booking</string>
+    <string name="prior_delivery">Prior delivery already exist</string>
 
     <!--Login-->
     <string name="username">Enter Username</string>
