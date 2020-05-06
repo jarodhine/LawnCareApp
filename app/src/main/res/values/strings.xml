@@ -29,6 +29,8 @@
     <string name="pickup_date">Pickup Date</string>
     <string name="check_availability">Check Availability</string>
     <string name="request_delivery">Request Delivery</string>
+    <string name="title">LawnCare</string>
+    <string name="subtitle">By Anglicare</string>
 
     <!--Admin-->
 
