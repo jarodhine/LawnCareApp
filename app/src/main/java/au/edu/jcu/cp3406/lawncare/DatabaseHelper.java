@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.util.ArrayList;
+
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "LawnCare.db";
@@ -184,5 +186,34 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         String s = day + " " + time;
         return s;
+    }
+
+    public String getAddress(int id, String type) {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT Address FROM Users WHERE ID='" + id + "' AND Type='" + type + "'", null);
+        cursor.moveToFirst();
+        String address = cursor.getString(0);
+        cursor.close();
+        return address;
+    }
+
+    public ArrayList<DeliveryItem> getList(String currentDay) {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT Time, Type, ID FROM Deliveries WHERE Day='" + currentDay + "'", null);
+
+        ArrayList<DeliveryItem> array = new ArrayList<>();
+
+        if (cursor.getCount() < 1) {
+            array.add(new DeliveryItem("", "No Deliveries or Pickups", ""));
+            return array;
+        }
+
+        while (cursor.moveToNext()) {
+            String address = getAddress(cursor.getInt(2), cursor.getString(1));
+            array.add(new DeliveryItem(cursor.getString(0), cursor.getString(1), address));
+        }
+
+        cursor.close();
+        return array;
     }
 }

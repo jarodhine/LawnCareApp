@@ -35,6 +35,9 @@
     <string name="preview">Preview</string>
 
     <!--Admin-->
+    <string name="time">Time</string>
+    <string name="address">Address</string>
+    <string name="type">Type</string>
 
 
     <!--Arrays -->
