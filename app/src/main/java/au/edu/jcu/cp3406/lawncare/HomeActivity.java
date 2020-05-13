@@ -62,7 +62,6 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        Log.i("myTag", "User ID: " + String.valueOf(homeID));
 
         deliveryDate.setText(String.format("%s%s", getString(R.string.next_delivery), db.getDelivery(homeID)));
         pickupDate.setText(String.format("%s%s", getString(R.string.next_pickup), db.getPickup(homeID)));

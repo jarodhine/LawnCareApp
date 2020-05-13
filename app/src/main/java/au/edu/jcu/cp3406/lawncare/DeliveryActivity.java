@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.ParseException;
@@ -26,6 +27,9 @@ public class DeliveryActivity extends AppCompatActivity {
     Spinner devDay;
     Spinner picTime;
     Spinner picDay;
+
+    TextView deliveryDate;
+    TextView pickupDate;
 
     Button verify;
     Button submit;
@@ -54,6 +58,9 @@ public class DeliveryActivity extends AppCompatActivity {
         verify = findViewById(R.id.btnVerify);
         submit = findViewById(R.id.btnSubmit);
 
+        deliveryDate = findViewById(R.id.tvDeliveryDate);
+        pickupDate = findViewById(R.id.tvPickupDate);
+
         verify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,6 +85,7 @@ public class DeliveryActivity extends AppCompatActivity {
 
     public boolean verifyDate(boolean verbose) {
         getDate();
+        updatePreview();
 
         //Compare database
         //Return false if dates are unavailable
@@ -127,6 +135,7 @@ public class DeliveryActivity extends AppCompatActivity {
         if (verbose) {
             Toast.makeText(getApplicationContext(), getString(R.string.date_available), Toast.LENGTH_SHORT).show();
         }
+
         return true;
     }
 
@@ -142,41 +151,85 @@ public class DeliveryActivity extends AppCompatActivity {
         LocalTime lt1 = LocalTime.now();
         LocalTime lt2 = LocalTime.now();
 
-        switch (devDaySelection) {
-            case "Next Monday":
-                ld1 = ld1.with(TemporalAdjusters.next(DayOfWeek.MONDAY));
-                break;
-            case "Next Tuesday":
-                ld1 = ld1.with(TemporalAdjusters.next(DayOfWeek.TUESDAY));
-                break;
-            case "Next Wednesday":
-                ld1 = ld1.with(TemporalAdjusters.next(DayOfWeek.WEDNESDAY));
-                break;
-            case "Next Thursday":
-                ld1 = ld1.with(TemporalAdjusters.next(DayOfWeek.THURSDAY));
-                break;
-            case "Next Friday":
-                ld1 = ld1.with(TemporalAdjusters.next(DayOfWeek.FRIDAY));
-                break;
+        String[] days = getResources().getStringArray(R.array.days);
+
+        if (devDaySelection.equals(days[0])) {
+            ld1 = ld1.with(TemporalAdjusters.next(DayOfWeek.MONDAY));
         }
 
-        switch (picDaySelection) {
-            case "Next Monday":
-                ld2 = ld2.with(TemporalAdjusters.next(DayOfWeek.MONDAY));
-                break;
-            case "Next Tuesday":
-                ld2 = ld2.with(TemporalAdjusters.next(DayOfWeek.TUESDAY));
-                break;
-            case "Next Wednesday":
-                ld2 = ld2.with(TemporalAdjusters.next(DayOfWeek.WEDNESDAY));
-                break;
-            case "Next Thursday":
-                ld2 = ld2.with(TemporalAdjusters.next(DayOfWeek.THURSDAY));
-                break;
-            case "Next Friday":
-                ld2 = ld2.with(TemporalAdjusters.next(DayOfWeek.FRIDAY));
-                break;
+        if (devDaySelection.equals(days[1])) {
+            ld1 = ld1.with(TemporalAdjusters.next(DayOfWeek.TUESDAY));
         }
+
+        if (devDaySelection.equals(days[2])) {
+            ld1 = ld1.with(TemporalAdjusters.next(DayOfWeek.WEDNESDAY));
+        }
+
+        if (devDaySelection.equals(days[3])) {
+            ld1 = ld1.with(TemporalAdjusters.next(DayOfWeek.THURSDAY));
+        }
+
+        if (devDaySelection.equals(days[4])) {
+            ld1 = ld1.with(TemporalAdjusters.next(DayOfWeek.FRIDAY));
+        }
+
+        //English Only Switch
+//        switch (devDaySelection) {
+//            case "Monday":
+//                ld1 = ld1.with(TemporalAdjusters.next(DayOfWeek.MONDAY));
+//                break;
+//            case "Tuesday":
+//                ld1 = ld1.with(TemporalAdjusters.next(DayOfWeek.TUESDAY));
+//                break;
+//            case "Wednesday":
+//                ld1 = ld1.with(TemporalAdjusters.next(DayOfWeek.WEDNESDAY));
+//                break;
+//            case "Thursday":
+//                ld1 = ld1.with(TemporalAdjusters.next(DayOfWeek.THURSDAY));
+//                break;
+//            case "Friday":
+//                ld1 = ld1.with(TemporalAdjusters.next(DayOfWeek.FRIDAY));
+//                break;
+//        }
+
+        if (picDaySelection.equals(days[0])) {
+            ld2 = ld2.with(TemporalAdjusters.next(DayOfWeek.MONDAY));
+        }
+
+        if (picDaySelection.equals(days[1])) {
+            ld2 = ld2.with(TemporalAdjusters.next(DayOfWeek.TUESDAY));
+        }
+
+        if (picDaySelection.equals(days[2])) {
+            ld2 = ld2.with(TemporalAdjusters.next(DayOfWeek.WEDNESDAY));
+        }
+
+        if (picDaySelection.equals(days[3])) {
+            ld2 = ld2.with(TemporalAdjusters.next(DayOfWeek.THURSDAY));
+        }
+
+        if (picDaySelection.equals(days[4])) {
+            ld2 = ld2.with(TemporalAdjusters.next(DayOfWeek.FRIDAY));
+        }
+
+        //English Only Switch
+//        switch (picDaySelection) {
+//            case "Monday":
+//                ld2 = ld2.with(TemporalAdjusters.next(DayOfWeek.MONDAY));
+//                break;
+//            case "Next Tuesday":
+//                ld2 = ld2.with(TemporalAdjusters.next(DayOfWeek.TUESDAY));
+//                break;
+//            case "Next Wednesday":
+//                ld2 = ld2.with(TemporalAdjusters.next(DayOfWeek.WEDNESDAY));
+//                break;
+//            case "Next Thursday":
+//                ld2 = ld2.with(TemporalAdjusters.next(DayOfWeek.THURSDAY));
+//                break;
+//            case "Next Friday":
+//                ld2 = ld2.with(TemporalAdjusters.next(DayOfWeek.FRIDAY));
+//                break;
+//        }
 
         switch (devTimeSelection) {
             case "10 AM":
@@ -236,6 +289,11 @@ public class DeliveryActivity extends AppCompatActivity {
         picDaySelection = ld2.toString();
         devTimeSelection = lt1.toString();
         picTimeSelection = lt2.toString();
+    }
+
+    public void updatePreview() {
+        deliveryDate.setText(String.format("%s %s", devDaySelection, devTimeSelection));
+        pickupDate.setText(String.format("%s %s", picDaySelection, picTimeSelection));
     }
 
 }

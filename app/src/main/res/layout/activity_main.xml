@@ -10,35 +10,44 @@
         android:id="@+id/logo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:contentDescription="@string/anglicare_logo"
+        android:paddingTop="10dp"
         android:src="@drawable/anglicare"
-        app:layout_constraintTop_toTopOf="parent"
-        android:paddingTop="10dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/title"
-        app:layout_constraintTop_toBottomOf="@id/logo"
         android:textAlignment="center"
-        android:textSize="32sp"/>
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/logo" />
 
     <TextView
         android:id="@+id/subtitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/subtitle"
-        app:layout_constraintTop_toBottomOf="@id/title"
         android:textAlignment="center"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title" />
 
     <EditText
         android:id="@+id/editID"
         android:layout_width="213dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
+        android:autofillHints=""
         android:ems="10"
         android:hint="@string/username"
+        android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/subtitle" />
@@ -53,7 +62,8 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editID" />
+        app:layout_constraintTop_toBottomOf="@+id/editID"
+        android:autofillHints="" />
 
     <Button
         android:id="@+id/btnLogin"
