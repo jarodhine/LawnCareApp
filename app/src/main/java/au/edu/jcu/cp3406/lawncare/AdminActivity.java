@@ -59,7 +59,7 @@ public class AdminActivity extends AppCompatActivity {
                             dialog.dismiss();
                         }
                     });
-                    
+
                     builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {

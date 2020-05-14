@@ -189,9 +189,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return s;
     }
 
-    public String getAddress(int id, String type) {
+    public String getAddress(int id) {
         SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT Address FROM Users WHERE ID='" + id + "' AND Type='" + type + "'", null);
+        Cursor cursor = db.rawQuery("SELECT Address FROM Users WHERE ID='" + id + "'", null);
         cursor.moveToFirst();
         String address = cursor.getString(0);
         cursor.close();
@@ -210,9 +210,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
 
         while (cursor.moveToNext()) {
-            String address = getAddress(cursor.getInt(2), cursor.getString(1));
+            String address = getAddress(cursor.getInt(2));
             array.add(new DeliveryItem(cursor.getString(0), cursor.getString(1), address));
         }
+
 
         cursor.close();
         return array;

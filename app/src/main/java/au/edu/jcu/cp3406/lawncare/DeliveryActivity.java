@@ -173,25 +173,6 @@ public class DeliveryActivity extends AppCompatActivity {
             ld1 = ld1.with(TemporalAdjusters.next(DayOfWeek.FRIDAY));
         }
 
-        //English Only Switch
-//        switch (devDaySelection) {
-//            case "Monday":
-//                ld1 = ld1.with(TemporalAdjusters.next(DayOfWeek.MONDAY));
-//                break;
-//            case "Tuesday":
-//                ld1 = ld1.with(TemporalAdjusters.next(DayOfWeek.TUESDAY));
-//                break;
-//            case "Wednesday":
-//                ld1 = ld1.with(TemporalAdjusters.next(DayOfWeek.WEDNESDAY));
-//                break;
-//            case "Thursday":
-//                ld1 = ld1.with(TemporalAdjusters.next(DayOfWeek.THURSDAY));
-//                break;
-//            case "Friday":
-//                ld1 = ld1.with(TemporalAdjusters.next(DayOfWeek.FRIDAY));
-//                break;
-//        }
-
         if (picDaySelection.equals(days[0])) {
             ld2 = ld2.with(TemporalAdjusters.next(DayOfWeek.MONDAY));
         }
@@ -211,25 +192,6 @@ public class DeliveryActivity extends AppCompatActivity {
         if (picDaySelection.equals(days[4])) {
             ld2 = ld2.with(TemporalAdjusters.next(DayOfWeek.FRIDAY));
         }
-
-        //English Only Switch
-//        switch (picDaySelection) {
-//            case "Monday":
-//                ld2 = ld2.with(TemporalAdjusters.next(DayOfWeek.MONDAY));
-//                break;
-//            case "Next Tuesday":
-//                ld2 = ld2.with(TemporalAdjusters.next(DayOfWeek.TUESDAY));
-//                break;
-//            case "Next Wednesday":
-//                ld2 = ld2.with(TemporalAdjusters.next(DayOfWeek.WEDNESDAY));
-//                break;
-//            case "Next Thursday":
-//                ld2 = ld2.with(TemporalAdjusters.next(DayOfWeek.THURSDAY));
-//                break;
-//            case "Next Friday":
-//                ld2 = ld2.with(TemporalAdjusters.next(DayOfWeek.FRIDAY));
-//                break;
-//        }
 
         switch (devTimeSelection) {
             case "10 AM":
