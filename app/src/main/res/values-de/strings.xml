@@ -4,8 +4,6 @@
     <string name="empty_details">Bitte geben Sie Ihre Daten ein</string>
     <string name="wrong_user">Benutzer existiert nicht</string>
     <string name="wrong_password">Das Passwort ist inkorrekt</string>
-    <string name="day_invalid">Tag ist ausgebucht, bitte versuchen Sie es an einem anderen Tag</string>
-    <string name="time_invalid">Die Zeit ist gebucht, bitte versuchen Sie es zu einem anderen Zeitpunkt</string>
     <string name="date_invalid">Die Abholung muss nach Lieferung erfolgen</string>
     <string name="date_available">Termine können gebucht werden</string>
     <string name="username">Geben Sie den Benutzernamen ein</string>

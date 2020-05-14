@@ -199,7 +199,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public ArrayList<DeliveryItem> getList(String currentDay) {
         SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT Time, Type, ID FROM Deliveries WHERE Day='" + currentDay + "'", null);
+        Cursor cursor = db.rawQuery("SELECT Time, Type, ID FROM Deliveries WHERE Day='" + currentDay + "' ORDER BY Time", null);
 
         ArrayList<DeliveryItem> array = new ArrayList<>();
 

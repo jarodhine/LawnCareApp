@@ -4,8 +4,6 @@
     <string name="empty_details">ਕਿਰਪਾ ਕਰਕੇ ਆਪਣੇ ਵੇਰਵੇ ਦਰਜ ਕਰੋ</string>
     <string name="wrong_user">ਉਪਭੋਗਤਾ ਮੌਜੂਦ ਨਹੀਂ ਹੈ</string>
     <string name="wrong_password">ਪਾਸਵਰਡ ਗਲਤ ਹੈ</string>
-    <string name="day_invalid">ਦਿਨ ਪੂਰੀ ਤਰ੍ਹਾਂ ਬੁੱਕ ਹੋਇਆ ਹੈ, ਕਿਰਪਾ ਕਰਕੇ ਇਕ ਹੋਰ ਦਿਨ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰੋ</string>
-    <string name="time_invalid">ਸਮਾਂ ਬੁੱਕ ਕੀਤਾ ਗਿਆ ਹੈ, ਕਿਰਪਾ ਕਰਕੇ ਹੋਰ ਵਾਰ ਕੋਸ਼ਿਸ਼ ਕਰੋ</string>
     <string name="date_invalid">ਪਿਕਅਪ ਡਿਲਿਵਰੀ ਤੋਂ ਬਾਅਦ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ</string>
     <string name="date_available">ਤਾਰੀਖ ਬੁਕਿੰਗ ਲਈ ਉਪਲਬਧ ਹਨ</string>
     <string name="username">ਉਪਯੋਗਕਰਤਾ ਨਾਮ ਦਰਜ ਕਰੋ</string>

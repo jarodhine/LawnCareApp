@@ -4,8 +4,6 @@
     <string name="empty_details">Per favore inserisci i tuoi dati</string>
     <string name="wrong_user">l\'utente non esiste</string>
     <string name="wrong_password">La password non è corretta</string>
-    <string name="day_invalid">Il giorno è al completo, prova un altro giorno</string>
-    <string name="time_invalid">L\'ora è prenotata, prova un\'altra volta</string>
     <string name="date_invalid">Il ritiro deve avvenire dopo la consegna</string>
     <string name="date_available">Le date sono disponibili per la prenotazione</string>
     <string name="username">Inserire username</string>

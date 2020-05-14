@@ -4,8 +4,6 @@
     <string name="empty_details">请输入您的详细信息</string>
     <string name="wrong_user">用户不存在</string>
     <string name="wrong_password">密码错误</string>
-    <string name="day_invalid">当天已满，请改天</string>
-    <string name="time_invalid">时间已满，请再试一次</string>
     <string name="date_invalid">提货必须在交货后</string>
     <string name="date_available">日期可供预订</string>
     <string name="username">输入用户名</string>
