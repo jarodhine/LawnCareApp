@@ -19,4 +19,16 @@
     <string name="pickup_date">挑个日子</string>
     <string name="check_availability">检查可用性</string>
     <string name="request_delivery">要求交货</string>
+    <string name="dev_day_invalid">交货日已满，请再试一天</string>
+    <string name="pic_day_invalid">接客日已满，请改一天</string>
+    <string name="dev_time_invalid">发货时间已预订，请再试一次</string>
+    <string name="pic_time_invalid">预订接送时间，请再试一次</string>
+    <string name="prior_delivery">先前的交货已经存在</string>
+    <string name="title">草坪护理</string>
+    <string name="anglicare_logo">英文徽标</string>
+    <string name="subtitle">通过Anglicare</string>
+    <string name="preview">预习</string>
+    <string name="time">时间</string>
+    <string name="address">地址</string>
+    <string name="type">类型</string>
 </resources>

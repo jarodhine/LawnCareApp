@@ -19,4 +19,16 @@
     <string name="pickup_date">Abholdatum</string>
     <string name="check_availability">Verfügbarkeit prüfen</string>
     <string name="request_delivery">Lieferung anfordern</string>
+    <string name="dev_day_invalid">Der Liefertag ist ausgebucht, bitte versuchen Sie es an einem anderen Tag</string>
+    <string name="pic_day_invalid">Der Abholtag ist ausgebucht. Bitte versuchen Sie es an einem anderen Tag</string>
+    <string name="dev_time_invalid">Die Lieferzeit ist gebucht, bitte versuchen Sie es zu einem anderen Zeitpunkt</string>
+    <string name="pic_time_invalid">Die Abholzeit ist gebucht. Bitte versuchen Sie es zu einem anderen Zeitpunkt</string>
+    <string name="prior_delivery">Vorablieferung bereits vorhanden</string>
+    <string name="title">Rasenpflege</string>
+    <string name="anglicare_logo">Englisches Logo</string>
+    <string name="subtitle">Mit der Anglicare</string>
+    <string name="preview">Vorschau</string>
+    <string name="time">Zeit</string>
+    <string name="address">Adresse</string>
+    <string name="type">Art</string>
 </resources>

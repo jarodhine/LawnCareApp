@@ -19,4 +19,16 @@
     <string name="pickup_date">Data di ritiro</string>
     <string name="check_availability">Verificare la disponibilità</string>
     <string name="request_delivery">Richiedi consegna</string>
+    <string name="dev_day_invalid">Il giorno della consegna è al completo, prova un altro giorno</string>
+    <string name="pic_day_invalid">Il giorno del ritiro è al completo, prova un altro giorno</string>
+    <string name="dev_time_invalid">I tempi di consegna sono prenotati, prova un\'altra volta</string>
+    <string name="pic_time_invalid">L\'orario di ritiro è prenotato. Riprova</string>
+    <string name="prior_delivery">La consegna anticipata esiste già</string>
+    <string name="title">Cura del prato</string>
+    <string name="anglicare_logo">Logo inglese</string>
+    <string name="subtitle">Di Anglicare</string>
+    <string name="preview">Anteprima</string>
+    <string name="time">Tempo</string>
+    <string name="address">Indirizzo</string>
+    <string name="type">genere</string>
 </resources>

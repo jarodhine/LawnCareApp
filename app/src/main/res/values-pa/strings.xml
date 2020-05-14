@@ -19,4 +19,16 @@
     <string name="pickup_date">ਪਿਕਅਪ ਦੀ ਮਿਤੀ</string>
     <string name="check_availability">ਉਪਲੱਬਧਤਾ ਚੈੱਕ ਕਰੋ</string>
     <string name="request_delivery">ਡਿਲਿਵਰੀ ਦੀ ਬੇਨਤੀ</string>
+    <string name="dev_day_invalid">ਡਿਲਿਵਰੀ ਦਾ ਦਿਨ ਪੂਰੀ ਤਰ੍ਹਾਂ ਬੁੱਕ ਹੋਇਆ ਹੈ, ਕਿਰਪਾ ਕਰਕੇ ਇਕ ਹੋਰ ਦਿਨ ਕੋਸ਼ਿਸ਼ ਕਰੋ</string>
+    <string name="pic_day_invalid">ਪਿਕਅਪ ਦਾ ਦਿਨ ਪੂਰੀ ਤਰ੍ਹਾਂ ਬੁੱਕ ਹੋਇਆ ਹੈ, ਕਿਰਪਾ ਕਰਕੇ ਇਕ ਹੋਰ ਦਿਨ ਅਜ਼ਮਾਓ</string>
+    <string name="dev_time_invalid">ਡਿਲਿਵਰੀ ਦਾ ਸਮਾਂ ਬੁੱਕ ਕੀਤਾ ਗਿਆ ਹੈ, ਕਿਰਪਾ ਕਰਕੇ ਹੋਰ ਵਾਰ ਕੋਸ਼ਿਸ਼ ਕਰੋ</string>
+    <string name="pic_time_invalid">ਪਿਕਅਪ ਟਾਈਮ ਬੁੱਕ ਕੀਤਾ ਗਿਆ ਹੈ, ਕਿਰਪਾ ਕਰਕੇ ਹੋਰ ਵਾਰ ਕੋਸ਼ਿਸ਼ ਕਰੋ</string>
+    <string name="prior_delivery">ਪੂਰਵ ਸਪੁਰਦਗੀ ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੈ</string>
+    <string name="title">ਲਾਅਨ ਕੇਅਰ</string>
+    <string name="anglicare_logo">ਅੰਗਰੇਜ਼ੀ ਲੋਗੋ</string>
+    <string name="subtitle">ਐਂਗਲੀਕੇਅਰ ਦੁਆਰਾ</string>
+    <string name="preview">ਝਲਕ</string>
+    <string name="time">ਸਮਾਂ</string>
+    <string name="address">ਪਤਾ</string>
+    <string name="type">ਕਿਸਮ</string>
 </resources>

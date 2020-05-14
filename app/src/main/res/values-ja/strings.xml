@@ -19,4 +19,16 @@
     <string name="pickup_date">受取日</string>
     <string name="check_availability">空き状況を確認する</string>
     <string name="request_delivery">配達依頼</string>
+    <string name="dev_day_invalid">配達日は満席です別の日をお試しください</string>
+    <string name="pic_day_invalid">集荷日は満席です。別の日をお試しください</string>
+    <string name="dev_time_invalid">配達時間は予約されています別の時間を試してください</string>
+    <string name="pic_time_invalid">集荷時刻が予約されています。もう一度お試しください</string>
+    <string name="prior_delivery">事前配信はすでに存在しています</string>
+    <string name="title">ローンケア</string>
+    <string name="anglicare_logo">英語ロゴ</string>
+    <string name="subtitle">Anglicareより</string>
+    <string name="preview">プレビュー</string>
+    <string name="time">時間</string>
+    <string name="address">住所</string>
+    <string name="type">タイプ</string>
 </resources>
