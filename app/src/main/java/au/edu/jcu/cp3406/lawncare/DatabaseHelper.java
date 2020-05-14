@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -215,5 +216,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         cursor.close();
         return array;
+    }
+
+    public void removeDelivery(String time, String address) {
+        LocalDate ld = LocalDate.now();
+        SQLiteDatabase db = getWritableDatabase();
+        Cursor cursor = db.rawQuery("DELETE FROM Deliveries WHERE Day='" + ld + "' AND Address= '" + address + "' AND Time= '" + time + "'", null);
+        cursor.close();
     }
 }
