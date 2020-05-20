@@ -219,10 +219,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return array;
     }
 
-    public void removeDelivery(String time, String address) {
-        LocalDate ld = LocalDate.now();
+    public void removeDelivery(String time, String currentDay) {
         SQLiteDatabase db = getWritableDatabase();
-        Cursor cursor = db.rawQuery("DELETE FROM Deliveries WHERE Day='" + ld + "' AND Address= '" + address + "' AND Time= '" + time + "'", null);
+        String whereClause = "Day=? AND Time=?";
+        String[] whereArgs = new String[] {currentDay, time};
+        db.delete("Deliveries", whereClause, whereArgs);
+    }
+
+    public int getDeliveryCount(String currentDay) {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT ID FROM Deliveries WHERE Day='" + currentDay + "' ORDER BY Time", null);
+        int count = cursor.getCount();
         cursor.close();
+        return count;
     }
 }

@@ -18,4 +18,7 @@
         <item name="android:paddingHorizontal">5dp</item>
     </style>
 
+    <style name="AlertDialog" parent="@android:style/Theme.Dialog">
+    </style>
+
 </resources>

@@ -18,6 +18,8 @@ public class AdminActivity extends AppCompatActivity {
     private DeliveryAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
+    private String currentDay;
+
     DatabaseHelper db;
 
     @Override
@@ -41,13 +43,15 @@ public class AdminActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
 
+        currentDay = LocalDate.now().toString();
+
         mAdapter.setOnItemClickListener(new DeliveryAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(final int position) {
                 if (deliveryItems.get(position).getAddress().equals("No Deliveries or Pickups")) {
                     return;
                 } else {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getParent());
+                    AlertDialog.Builder builder = new AlertDialog.Builder(AdminActivity.this, R.style.AlertDialog);
 
                     builder.setTitle("Confirmation");
                     builder.setMessage("Remove Item?");
@@ -66,7 +70,6 @@ public class AdminActivity extends AppCompatActivity {
                             dialog.dismiss();
                         }
                     });
-
                     AlertDialog alert = builder.create();
                     alert.show();
                 }
@@ -80,8 +83,13 @@ public class AdminActivity extends AppCompatActivity {
 
     public void removeItem(int position) {
         String time = deliveryItems.get(position).getTime();
-        String address = deliveryItems.get(position).getAddress();
-        db.removeDelivery(time, address);
+        db.removeDelivery(time, currentDay);
+        mRecyclerView.removeViewAt(position);
+        mAdapter.notifyItemRemoved(position);
+        mAdapter.notifyItemRangeChanged(position, db.getDeliveryCount(currentDay));
+        mAdapter.notifyDataSetChanged();
+        mRecyclerView.invalidate();
+        recreate();
     }
 
 }
