@@ -15,6 +15,6 @@ public class HelpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_help);
 
         pdfView = findViewById(R.id.pdfView);
-        pdfView.fromAsset("testpdf.pdf").load();
+        pdfView.fromAsset("maintain_your_lawn_mower.pdf").load();
     }
 }
