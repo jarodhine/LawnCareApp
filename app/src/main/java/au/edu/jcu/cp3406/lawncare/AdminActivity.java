@@ -51,11 +51,10 @@ public class AdminActivity extends AppCompatActivity {
                 if (deliveryItems.get(position).getAddress().equals("No Deliveries or Pickups")) {
                     return;
                 } else {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(AdminActivity.this, R.style.AlertDialog);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(AdminActivity.this, R.style.AlertDialogCustom);
 
                     builder.setTitle("Confirmation");
                     builder.setMessage("Remove Item?");
-
                     builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -63,7 +62,6 @@ public class AdminActivity extends AppCompatActivity {
                             dialog.dismiss();
                         }
                     });
-
                     builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
