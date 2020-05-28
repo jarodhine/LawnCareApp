@@ -33,7 +33,6 @@ public class HelpActivity extends AppCompatActivity {
                 break;
             case "日本語":
                 asset_name = "maintain_your_lawn_mower_japanese.pdf";
-                System.out.println("TESTING JAPANESE");
                 break;
             case "中文":
                 asset_name = "maintain_your_lawn_mower_mandarin.pdf";
