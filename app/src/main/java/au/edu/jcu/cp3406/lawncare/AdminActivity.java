@@ -49,8 +49,9 @@ public class AdminActivity extends AppCompatActivity {
             @Override
             public void onItemClick(final int position) {
                 if (deliveryItems.get(position).getAddress().equals("No Deliveries or Pickups")) {
-                    return;
-                } else {
+                }
+                else {
+                    //Prompt user for confirmation for deleting item
                     AlertDialog.Builder builder = new AlertDialog.Builder(AdminActivity.this, R.style.AlertDialogCustom);
 
                     builder.setTitle("Confirmation");
@@ -76,12 +77,17 @@ public class AdminActivity extends AppCompatActivity {
     }
 
     private void createDeliveryList() {
+        //Retrieve all pickups and deliveries for current date
         deliveryItems = db.getList(LocalDate.now().toString());
     }
 
     public void removeItem(int position) {
         String time = deliveryItems.get(position).getTime();
+
+        //Remove item from database
         db.removeDelivery(time, currentDay);
+
+        //Update view
         mRecyclerView.removeViewAt(position);
         mAdapter.notifyItemRemoved(position);
         mAdapter.notifyItemRangeChanged(position, db.getDeliveryCount(currentDay));

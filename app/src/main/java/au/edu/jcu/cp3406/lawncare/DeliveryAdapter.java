@@ -18,16 +18,16 @@ public class DeliveryAdapter extends RecyclerView.Adapter<DeliveryAdapter.Delive
         void onItemClick(int position);
     }
 
-    public void setOnItemClickListener(OnItemClickListener listener) {
+    void setOnItemClickListener(OnItemClickListener listener) {
         mListener = listener;
     }
 
-    public static class DeliveryViewHolder extends RecyclerView.ViewHolder {
-        public TextView Time;
-        public TextView Address;
-        public TextView Type;
+    static class DeliveryViewHolder extends RecyclerView.ViewHolder {
+        TextView Time;
+        TextView Address;
+        TextView Type;
 
-        public DeliveryViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
+        DeliveryViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
             super(itemView);
             Time = itemView.findViewById(R.id.tvTime);
             Address = itemView.findViewById(R.id.tvAddress);
@@ -47,7 +47,7 @@ public class DeliveryAdapter extends RecyclerView.Adapter<DeliveryAdapter.Delive
         }
     }
 
-    public DeliveryAdapter(ArrayList<DeliveryItem> deliveryList) {
+    DeliveryAdapter(ArrayList<DeliveryItem> deliveryList) {
         mDeliveryList = deliveryList;
     }
 
@@ -55,8 +55,7 @@ public class DeliveryAdapter extends RecyclerView.Adapter<DeliveryAdapter.Delive
     @Override
     public DeliveryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.delivery_item, parent, false);
-        DeliveryViewHolder dvh = new DeliveryViewHolder(v, mListener);
-        return  dvh;
+        return new DeliveryViewHolder(v, mListener);
     }
 
     @Override

@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         db = new DatabaseHelper(this);
-
         db.addUser("Admin", "password", "Admin", "Blank");
         db.addUser("John1234", "password", "John", "123 Fake St");
         db.addUser("Jane1234", "password", "Jane", "123 Real St");
@@ -44,19 +43,19 @@ public class MainActivity extends AppCompatActivity {
         String name = userName.getText().toString();
         String password = userPassword.getText().toString();
 
-        //Return if empty
+        //Check fields are filled
         if (name.isEmpty() || password.isEmpty()) {
             Toast.makeText(this, getString(R.string.empty_details), Toast.LENGTH_SHORT).show();
             return;
         }
 
-        //Check user exist
+        //Check user exist in database
         if (!db.checkUserExist(name)) {
             Toast.makeText(this, getString(R.string.wrong_user), Toast.LENGTH_SHORT).show();
             return;
         }
 
-        //Authenticate User
+        //Check user password
         if (!db.checkUserPassword(name, password)) {
             Toast.makeText(this, getString(R.string.wrong_password), Toast.LENGTH_SHORT).show();
             return;
@@ -67,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void startActivity() {
         Intent intent;
+        //Select Admin Activity or User Activity based on username
         if (userName.getText().toString().equals("Admin")) {
             intent = new Intent(MainActivity.this, AdminActivity.class);
         } else {

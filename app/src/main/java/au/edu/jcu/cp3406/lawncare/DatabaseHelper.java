@@ -5,9 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -18,6 +16,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
+    //Table creation sql example
+    //Able to be converted straight to MySQL, foreign key selection may require translation
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE Users (ID INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -41,6 +41,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    //Create new user example
+    //To be handled server side in pure sql after live server conversion
     public void addUser(String username, String password, String name, String address) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -52,6 +54,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    //Return true if username already exist in database
     public boolean checkUserExist(String username) {
         String[] columns = {"ID"};
         SQLiteDatabase db = getReadableDatabase();
@@ -65,6 +68,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return counter > 0;
     }
 
+    //Return true if username and password pair exist in database
+    //No security implemented, passwords are stored in plain text
+    //Security system will need to be implemented after live server conversion
     public boolean checkUserPassword(String username, String password) {
         String[] columns = {"ID"};
         SQLiteDatabase db = getReadableDatabase();
@@ -78,6 +84,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return counter > 0;
     }
 
+    //Return database ID matching username
+    //ID used instead of username to prepare for live server conversion
+    //ID contains no personal information and is faster to process as an integer
     public int getID(String username) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT ID FROM Users WHERE Username='" + username + "'", null);
@@ -89,6 +98,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return ID;
     }
 
+    //Add a pair of delivery and pickup task to the database
     public void addDelivery(int ID, String devTime, String devDay, String picTime, String picDay) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues devValues = new ContentValues();
@@ -109,6 +119,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    //Checks day has time slots available
+    //Returns false if day is fully booked
     public boolean checkDay(String day, String type) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT Day FROM Deliveries WHERE Day ='" + day + "' AND Type = '" + type + "'", null);
@@ -121,6 +133,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return true;
     }
 
+    //Check time is available
+    //Return false if time already booked
     public boolean checkTime(String day, String time, String type) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT Day FROM Deliveries WHERE Day ='" + day + "' AND Time = '" + time + "' AND Type = '" + type + "'", null);
@@ -133,6 +147,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return true;
     }
 
+    //Checks is user has no prior delivery or pickup
+    //Returns false is delivery or pickup is already scheduled
     public boolean checkExisting(int id) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT Day FROM Deliveries WHERE ID ='" + id + "'", null);
@@ -145,12 +161,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return true;
     }
 
+    //Returns string of delivery date for user
     public String getDelivery(int id) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT Day, Time FROM Deliveries WHERE ID='" + id + "' AND Type = 'Delivery'", null);
-
-        String day = "";
-        String time = "";
 
         if (cursor.getCount() <= 0) {
             cursor.close();
@@ -159,20 +173,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
 
         cursor.moveToFirst();
-        day = cursor.getString(0);
-        time = cursor.getString(1);
+        String day = cursor.getString(0);
+        String time = cursor.getString(1);
         cursor.close();
 
-        String s = day + " " + time;
-        return s;
+        return day + " " + time;
     }
 
+    //Returns string of pickup date for user
     public String getPickup(int id) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT Day, Time FROM Deliveries WHERE ID='" + id + "' AND Type = 'Pickup'", null);
-
-        String day = "";
-        String time = "";
 
         if (cursor.getCount() <= 0) {
             cursor.close();
@@ -181,15 +192,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
 
         cursor.moveToFirst();
-        day = cursor.getString(0);
-        time = cursor.getString(1);
+        String day = cursor.getString(0);
+        String time = cursor.getString(1);
         cursor.close();
 
-        String s = day + " " + time;
-        return s;
+        return day + " " + time;
     }
 
-    public String getAddress(int id) {
+    //Retrieves user address matching ID
+    private String getAddress(int id) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT Address FROM Users WHERE ID='" + id + "'", null);
         cursor.moveToFirst();
@@ -198,6 +209,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return address;
     }
 
+    //Returns array of deliveries and pickups to be made for current day
     public ArrayList<DeliveryItem> getList(String currentDay) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT Time, Type, ID FROM Deliveries WHERE Day='" + currentDay + "' ORDER BY Time", null);
@@ -219,6 +231,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return array;
     }
 
+    //Delete selected delivery or pickup from database
     public void removeDelivery(String time, String currentDay) {
         SQLiteDatabase db = getWritableDatabase();
         String whereClause = "Day=? AND Time=?";
@@ -226,6 +239,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.delete("Deliveries", whereClause, whereArgs);
     }
 
+    //Returns count of deliveries and pickups for current day
     public int getDeliveryCount(String currentDay) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT ID FROM Deliveries WHERE Day='" + currentDay + "' ORDER BY Time", null);

@@ -5,7 +5,7 @@ public class DeliveryItem {
     private String Address;
     private String Type;
 
-    public DeliveryItem(String time, String address, String type) {
+    DeliveryItem(String time, String address, String type) {
         Time = time;
         Address = address;
         Type = type;

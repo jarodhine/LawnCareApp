@@ -1,19 +1,12 @@
 package au.edu.jcu.cp3406.lawncare;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
 
-import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.TextView;
-
-import java.text.DateFormat;
-import java.util.Calendar;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -33,6 +26,7 @@ public class HomeActivity extends AppCompatActivity {
 
         db = new DatabaseHelper(this);
 
+        //Retrieve users ID and store in class variable
         final int userID = getIntent().getIntExtra("userID", 0);
         homeID = userID;
 
@@ -63,6 +57,7 @@ public class HomeActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
+        //Update preview
         deliveryDate.setText(String.format("%s%s", getString(R.string.next_delivery), db.getDelivery(homeID)));
         pickupDate.setText(String.format("%s%s", getString(R.string.next_pickup), db.getPickup(homeID)));
     }

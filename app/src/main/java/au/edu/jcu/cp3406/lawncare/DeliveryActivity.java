@@ -1,11 +1,9 @@
 package au.edu.jcu.cp3406.lawncare;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Build;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -18,7 +16,6 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.temporal.TemporalAdjusters;
-import java.util.Calendar;
 import java.util.Date;
 
 public class DeliveryActivity extends AppCompatActivity {
@@ -71,9 +68,11 @@ public class DeliveryActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Verify user input is correct
                 if (verifyDate(false)) {
+                    //Fail to add delivery if user has prior booking
                     if (db.checkExisting(userID)) {
-                        db.addDelivery(userID, devTimeSelection.toString(), devDaySelection.toString(), picTimeSelection.toString(), picDaySelection.toString());
+                        db.addDelivery(userID, devTimeSelection, devDaySelection, picTimeSelection, picDaySelection);
                         finish();
                     } else {
                         Toast.makeText(getApplicationContext(), getString(R.string.prior_delivery), Toast.LENGTH_SHORT).show();
@@ -87,34 +86,39 @@ public class DeliveryActivity extends AppCompatActivity {
         getDate();
         updatePreview();
 
-        //Compare database
-        //Return false if dates are unavailable
-        //Delivery Verification
+        //Compare to database
+        //Return false if date or time is unavailable
+
+        //Delivery day capacity check
         if (!db.checkDay(devDaySelection, "Delivery")) {
             Toast.makeText(getApplicationContext(), getString(R.string.dev_day_invalid), Toast.LENGTH_SHORT).show();
             return false;
         }
 
+        //Delivery time check
         if (!db.checkTime(devDaySelection,  devTimeSelection,"Delivery")) {
             Toast.makeText(getApplicationContext(), getString(R.string.dev_time_invalid), Toast.LENGTH_SHORT).show();
             return false;
         }
 
-        //Pickup Verification
+        //Pickup day capacity check
         if (!db.checkDay(devDaySelection, "Pickup")) {
             Toast.makeText(getApplicationContext(), getString(R.string.pic_day_invalid), Toast.LENGTH_SHORT).show();
             return false;
         }
 
+        //Pickup time check
         if (!db.checkTime(devDaySelection, picTimeSelection, "Delivery")) {
             Toast.makeText(getApplicationContext(), getString(R.string.pic_time_invalid), Toast.LENGTH_SHORT).show();
             return false;
         }
 
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        //Set date format for easy sorting via database
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date devDate = formatter.getCalendar().getTime();
         Date picDate = formatter.getCalendar().getTime();
 
+        //Update delivery date and pickup date with user selected values
         try {
             devDate = formatter.parse(devDaySelection);
             picDate = formatter.parse(picDaySelection);
@@ -122,11 +126,16 @@ public class DeliveryActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+        //Compare dates
+        //Return false if check fails
+
+        //Check pickup date is after delivery date
         if (picDate.before(devDate)) {
             Toast.makeText(getApplicationContext(), getString(R.string.date_invalid), Toast.LENGTH_SHORT).show();
             return false;
         }
 
+        //Check delivery and pickup are not on the same day
         if (picDate.equals(devDate)) {
             Toast.makeText(getApplicationContext(), getString(R.string.date_invalid), Toast.LENGTH_SHORT).show();
             return false;
@@ -153,6 +162,7 @@ public class DeliveryActivity extends AppCompatActivity {
 
         String[] days = getResources().getStringArray(R.array.days);
 
+        //Convert delivery day spinner selection to date format
         if (devDaySelection.equals(days[0])) {
             ld1 = ld1.with(TemporalAdjusters.next(DayOfWeek.MONDAY));
         }
@@ -173,6 +183,8 @@ public class DeliveryActivity extends AppCompatActivity {
             ld1 = ld1.with(TemporalAdjusters.next(DayOfWeek.FRIDAY));
         }
 
+
+        //Convert pickup day spinner selection to date format
         if (picDaySelection.equals(days[0])) {
             ld2 = ld2.with(TemporalAdjusters.next(DayOfWeek.MONDAY));
         }
@@ -193,6 +205,7 @@ public class DeliveryActivity extends AppCompatActivity {
             ld2 = ld2.with(TemporalAdjusters.next(DayOfWeek.FRIDAY));
         }
 
+        //Convert delivery time spinner selection to time format
         switch (devTimeSelection) {
             case "10 AM":
                 lt1 = LocalTime.parse("10:00");
@@ -220,6 +233,7 @@ public class DeliveryActivity extends AppCompatActivity {
                 break;
         }
 
+        //Convert pickup time spinner selection to time format
         switch (picTimeSelection) {
             case "10 AM":
                 lt2 = LocalTime.parse("10:00");

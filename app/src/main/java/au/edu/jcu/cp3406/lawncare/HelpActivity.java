@@ -11,6 +11,7 @@ import java.util.Locale;
 public class HelpActivity extends AppCompatActivity {
 
     PDFView pdfView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +20,7 @@ public class HelpActivity extends AppCompatActivity {
         String default_language = Locale.getDefault().getDisplayLanguage();
         String asset_name = "maintain_your_lawn_mower.pdf";
 
+        //Select pdf based on device language
         switch (default_language){
             case "English":
                 asset_name = "maintain_your_lawn_mower.pdf";
